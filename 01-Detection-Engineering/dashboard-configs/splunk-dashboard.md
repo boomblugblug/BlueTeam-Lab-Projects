@@ -4,7 +4,7 @@
 
 รายงานฉบับนี้จัดทำเพื่อแสดงผลงานการออกแบบ Security Operations Center (SOC) Dashboard แบบ Real-time ระบบนี้ถูกออกแบบมาเพื่อรวบรวม Log จากหลายแหล่งข้อมูล (Multi-source) และแสดงผลระดับภัยคุกคามตามความรุนแรง โดยตัว Dashboard มีระบบอัปเดตข้อมูลอัตโนมัติ (Auto-refresh) เพื่อให้การเฝ้าระวังเป็นไปอย่างต่อเนื่อง
 
-![ภาพรวมระบบ Splunk SOC Dashboard](01-Detection-Engineering/screenshots/[ชื่อไฟล์รูปภาพ Dashboard ของคุณ])
+![ภาพรวมระบบ Splunk SOC Dashboard](01-Detection-Engineering/screenshots/[01-Detection-Engineering/screenshots/splunk-dashboard-overview(5).png])
 
 ส่วนประกอบหลักของ Dashboard
 
