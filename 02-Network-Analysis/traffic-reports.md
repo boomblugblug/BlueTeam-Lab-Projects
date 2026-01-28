@@ -22,7 +22,7 @@ Focused analysis on ports 80 and 443 revealed:
   - upload.php
   - dbfunction.php
 ![Gobuster](screenshots/gobuster.png)
-![Web Attack](screenshots/wab_attack.png)
+![Web Attack](screenshots/web_attack.png)
 
 
 ## 5. Tool Comparison Note
