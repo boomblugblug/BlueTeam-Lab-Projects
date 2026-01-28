@@ -14,7 +14,7 @@ Dashboard ถูกออกแบบให้:
 
 ## 🖥️ Dashboard Preview
 
-![Splunk SOC Dashboard Overview](./splunk-dashboard-overview(5).png)
+![Splunk SOC Dashboard Overview](01-Detection-Engineering/screenshots/splunk-dashboard-overview(5).png)
 
 > ภาพรวมของ Dashboard แสดงจำนวน Alert ตามระดับ Severity, ตารางแจ้งเตือนแบบ Real-time  
 > และสถิติการโจมตีที่พบบ่อยในระบบ
@@ -80,7 +80,6 @@ Dashboard แบ่งการแจ้งเตือนออกเป็น 
 ### 🔌 Data Sources
 - Windows Event Logs
 - Web Server Access Logs
-- Sophos EDR
 
 ---
 
