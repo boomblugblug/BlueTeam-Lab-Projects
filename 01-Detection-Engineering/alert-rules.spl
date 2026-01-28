@@ -1,1 +1,36 @@
 # Splunk Rules
+# Brute Force Attack WebApp
+sourcetype=access_combined referer="*http://192.168.70.142:8080/login.php*"
+| bucket _time span=5m
+| eval status_login = if(like(method, "%POST%") AND like(uri, "%login.php%") AND status=302, "Success",
+if(like(method, "%POST%") AND like(uri, "%login.php%") AND status=200, "Fail", "None"))
+| where status_login = "Success" OR status_login = "Fail"
+| stats count(eval(status_login="Success")) as Success count(eval(status_login="Fail")) as Fail by _time, clientip
+| eval alert = "Brute Force Attack"
+| where Success >= 1 AND Fail >= 10
+
+# SQL injection
+sourcetype=access_combined uri="*union*select*" OR uri="*information_schema*" OR useragent="*sqlmap*"
+| bucket _time span=1m
+| eval uri = urldecode(uri)
+| stats values(uri) dc(uri) as count by _time,clientip,method,status,useragent
+| where count > 1
+
+# Brute Force RDP
+sourcetype="WinEventLog:Security" (EventCode=4624 AND Logon_Type=10) OR EventCode=4625
+| eval rule_name = "Brute Force Login"
+| eval severity = "Medium"
+| eval Account_Name = mvindex(Account_Name, 1)
+| bucket _time span=5m
+| eval action=if(EventCode=4624, "Success", "Fail")
+| stats count(eval(action="Success")) as Success count(eval(action="Fail")) as Fail by _time,rule_name,severity,Source_Network_Address,Account_Name,ComputerName
+| rename Source_Network_Address as source, ComputerName as destination, Account_Name as target_user
+| search Fail > 3
+
+# DoS 
+sourcetype=access_combined
+| eval rule_name = "DoS Web"
+| eval severity = "Low"
+| bucket _time span=1m
+| stats count by _time,clientip,uri,rule_name,severity
+| where count > 1000
