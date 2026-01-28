@@ -88,7 +88,7 @@ User-Agent เหล่านี้บ่งชี้ถึงการใช้
 **Simple File List เวอร์ชัน 4.2.2** ซึ่งมีช่องโหว่ประเภท Arbitrary File Upload
 จึงมีความเป็นไปได้สูงว่าผู้โจมตีใช้ช่องโหว่นี้เป็นจุดเริ่มต้นของการโจมตี
 
-![Vulnerability](screenshots/simple-file-list-vulnerability..png)
+![Vulnerability](screenshots/simple-file-list-vulnerability.png)
 
 ---
 
