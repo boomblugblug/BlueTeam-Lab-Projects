@@ -1,1 +1,20 @@
+# IP Communication
+ip.addr == 10.251.96.5 && ip.addr == 10.251.96.4
+
+# TCP Port Scan Detection
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+
+# Web Traffic
+tcp.port == 80 || tcp.port == 443
+
+# HTTP Requests
+http.request
+
+# Suspicious URI Access
+http.request.uri contains "upload"
+http.request.uri contains "editprofile"
+http.request.uri contains "dbfunction"
+
+# Status Code
+http.response.code == 200 || http.response.code == 403
 
