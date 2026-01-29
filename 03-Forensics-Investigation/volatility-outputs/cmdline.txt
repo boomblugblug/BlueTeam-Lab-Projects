@@ -1,1 +1,5 @@
-cmdline
+[Volatility Output]
+Plugin   : windows.cmdline.CmdLine
+
+Screenshot Evidence:
+../screenshots/memory-forensics/cmdline-execution.png
