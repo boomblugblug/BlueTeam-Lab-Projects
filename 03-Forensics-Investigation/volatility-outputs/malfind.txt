@@ -1,1 +1,8 @@
-malfind
+[Volatility Output]
+Plugin   : windows.malfind.Malfind
+
+Screenshot Evidence:
+../screenshots/memory-forensics/malfind-explorer.png
+
+Note:
+Suspicious RWX memory regions observed in explorer.exe.
