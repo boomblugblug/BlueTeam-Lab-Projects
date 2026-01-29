@@ -1,1 +1,5 @@
-psscan
+[Volatility Output]
+Plugin   : windows.psscan.PsScan
+
+Screenshot Evidence:
+../screenshots/memory-forensics/pslist-psscan.png
