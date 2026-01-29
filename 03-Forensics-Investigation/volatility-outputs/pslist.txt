@@ -1,1 +1,14 @@
-pslist
+[Volatility Output]
+Plugin   : windows.pslist.PsList
+Case     : Ransomware Memory Forensics
+Evidence : ransomware.vmem
+
+Description:
+This file contains the list of active processes
+recognized by the Windows kernel at the time of memory acquisition.
+
+Command Used:
+vol.exe -f ransomware.vmem windows.pslist.PsList
+
+--- Output ---
+../screenshots/memory-forensics/pslist-psscan.png
