@@ -1,36 +1,72 @@
-# Network Traffic Analysis Report
+# รายงานการวิเคราะห์ทราฟฟิกเครือข่าย (Network Traffic Analysis Report)
 
-## 1. Overview
-This analysis focuses on the inspection of network traffic captured in webshell.pcap
-using Wireshark, aiming to identify suspicious behavior related to web-based attacks.
+## 1. ภาพรวม (Overview)
+การวิเคราะห์นี้มุ่งเน้นการตรวจสอบทราฟฟิกเครือข่ายที่ถูกบันทึกไว้ในไฟล์ `webshell.pcap`
+โดยใช้เครื่องมือ Wireshark
+เพื่อระบุพฤติกรรมที่อาจเข้าข่ายความผิดปกติ
+หรือเกี่ยวข้องกับการโจมตีผ่านเว็บ (Web-based Attacks)
 
-## 2. Suspicious Host Identification
-A significant amount of traffic was observed between:
+---
+
+## 2. การระบุโฮสต์ต้องสงสัย (Suspicious Host Identification)
+จากการวิเคราะห์พบว่ามีปริมาณทราฟฟิกจำนวนมาก
+เกิดขึ้นระหว่างโฮสต์ต่อไปนี้:
+
 - 10.251.96.5 (Client)
 - 10.251.96.4 (Server)
+
+ลักษณะของทราฟฟิกที่เกิดขึ้นซ้ำ ๆ ระหว่างโฮสต์ทั้งสอง
+บ่งชี้ถึงความเป็นไปได้ของการสื่อสารที่เกี่ยวข้องกับกิจกรรมต้องสงสัย
+
 ![Suspicious Host Identification](screenshots/suspicious_host_identification.png)
 
-## 3. Port Scanning Activity
-The client performed TCP SYN scans across ports 1–1024, indicating reconnaissance behavior.
+---
+
+## 3. กิจกรรมการสแกนพอร์ต (Port Scanning Activity)
+พบว่าฝั่ง Client มีการส่ง TCP SYN packet
+ไปยังพอร์ตช่วง 1–1024 อย่างต่อเนื่อง
+ซึ่งเป็นลักษณะของการทำ reconnaissance
+เพื่อสำรวจพอร์ตที่เปิดใช้งานบนฝั่ง Server
+
 ![Port Scan](screenshots/port_scan.png)
 
-## 4. Web Attack Indicators
-Focused analysis on ports 80 and 443 revealed:
-- Directory brute force via Gobuster
-- Access to sensitive endpoints:
-  - editprofile.php
-  - upload.php
-  - dbfunction.php
-![Gobuster](screenshots/gobuster.png)
+---
+
+## 4. ตัวบ่งชี้การโจมตีผ่านเว็บ (Web Attack Indicators)
+จากการวิเคราะห์ทราฟฟิกบนพอร์ต 80 และ 443
+พบพฤติกรรมที่อาจเกี่ยวข้องกับการโจมตีผ่านเว็บ ได้แก่:
+
+- การ brute force directory โดยใช้เครื่องมือ Gobuster
+- การเข้าถึง endpoint ที่มีความอ่อนไหว เช่น:
+  - `editprofile.php`
+  - `upload.php`
+  - `dbfunction.php`
+
+พฤติกรรมดังกล่าวอาจเป็นส่วนหนึ่งของการสำรวจระบบ
+หรือความพยายามในการหาช่องโหว่ของเว็บแอปพลิเคชัน
+
+![Gobuster](screenshots/gobuster.png)  
 ![Web Attack](screenshots/web_attack.png)
 
+---
 
-## 5. Tool Comparison Note
-Wireshark was used for protocol-level inspection, while Microsoft Network Monitor
-was considered for process-level correlation. However, the provided pcap file
-was incompatible with Microsoft Network Monitor.
+## 5. หมายเหตุเกี่ยวกับเครื่องมือที่ใช้ (Tool Comparison Note)
+ในการวิเคราะห์ครั้งนี้ได้ใช้ Wireshark
+เพื่อทำการตรวจสอบทราฟฟิกในระดับโปรโตคอล (Protocol-level Inspection)
 
-## 6. Conclusion
-The traffic pattern suggests webshell-related activity involving directory brute forcing
-and potential file upload exploitation.
+Microsoft Network Monitor ถูกพิจารณาเป็นอีกหนึ่งเครื่องมือ
+เนื่องจากมีความสามารถในการเชื่อมโยงทราฟฟิกกับ process ในระดับระบบ
+อย่างไรก็ตาม ไฟล์ pcap ที่ใช้ในการทดลองนี้
+ไม่สามารถเปิดใช้งานกับ Microsoft Network Monitor ได้
 
+---
+
+## 6. บทสรุป (Conclusion)
+รูปแบบของทราฟฟิกที่ตรวจพบ
+บ่งชี้ถึงกิจกรรมที่อาจเกี่ยวข้องกับ webshell
+โดยมีพฤติกรรมการ brute force directory
+และความพยายามในการเข้าถึงหรืออัปโหลดไฟล์ผ่านเว็บแอปพลิเคชัน
+
+ผลการวิเคราะห์นี้เป็นส่วนหนึ่งของการเรียนรู้
+และช่วยให้เข้าใจลักษณะของทราฟฟิกที่อาจพบได้
+ในกรณีการโจมตีผ่านเว็บในสภาพแวดล้อมจริง
